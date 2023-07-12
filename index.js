@@ -10,6 +10,9 @@ const Message = require('./models/Message');
 const ws = require('ws');
 const fs = require('fs');
 
+//port
+const PORT = process.env.PORT || 4040;
+  
 dotenv.config();
 mongoose.connect(process.env.MONGO_URL).then(()=>{
     console.log('connected to mongo');
@@ -115,7 +118,7 @@ app.post('/register', async (req,res) => {
   }
 });
 
-const server = app.listen(4040);
+const server = app.listen(PORT);
 
 const wss = new ws.WebSocketServer({server});
 wss.on('connection', (connection, req) => {
